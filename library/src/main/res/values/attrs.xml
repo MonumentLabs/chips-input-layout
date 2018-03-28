@@ -18,6 +18,8 @@
         <attr name="allowCustomChips" format="boolean"/>
         <attr name="hideKeyboardOnChipClick" format="boolean"/>
         <attr name="maxRows" format="integer" />
+        <attr name="addChipWithSpaceButton" format="boolean"/>
+        <attr name="closeKeyboardAfterChipAdded" format="boolean"/>
 
         <attr name="chip_showDetails" format="boolean" />
         <attr name="chip_showAvatar" format="boolean" />

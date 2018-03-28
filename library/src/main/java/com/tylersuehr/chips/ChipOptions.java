@@ -45,6 +45,8 @@ final class ChipOptions {
     boolean mAllowCustomChips;
     boolean mHideKeyboardOnChipClick;
     int mMaxRows;
+    boolean mAddChipWithSpaceButton;
+    boolean mCloseKeyboardAfterChipAdded;
 
     @NonNull
     ChipImageRenderer mImageRenderer;
@@ -81,6 +83,8 @@ final class ChipOptions {
         mAllowCustomChips = a.getBoolean(R.styleable.ChipsInputLayout_allowCustomChips, true);
         mHideKeyboardOnChipClick = a.getBoolean(R.styleable.ChipsInputLayout_hideKeyboardOnChipClick, true);
         mMaxRows = a.getInt(R.styleable.ChipsInputLayout_maxRows, 3);
+        mAddChipWithSpaceButton = a.getBoolean(R.styleable.ChipsInputLayout_addChipWithSpaceButton, false);
+        mCloseKeyboardAfterChipAdded = a.getBoolean(R.styleable.ChipsInputLayout_closeKeyboardAfterChipAdded, true);
 
         a.recycle();
 

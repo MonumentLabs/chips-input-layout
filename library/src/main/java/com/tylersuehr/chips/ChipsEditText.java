@@ -1,8 +1,11 @@
 package com.tylersuehr.chips;
+
 import android.content.Context;
 import android.graphics.Paint;
 import android.support.v7.widget.AppCompatEditText;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -24,8 +27,9 @@ import android.widget.RelativeLayout;
  * @version 1.0
  */
 class ChipsEditText extends AppCompatEditText implements ChipComponent {
-    private OnKeyboardListener mKeyboardListener;
 
+    private OnKeyboardListener mKeyboardListener;
+    private ChipOptions options;
 
     ChipsEditText(Context c) {
         super(c);
@@ -54,9 +58,11 @@ class ChipsEditText extends AppCompatEditText implements ChipComponent {
     @Override
     public void onEditorAction(int actionCode) {
         if (mKeyboardListener != null && actionCode == EditorInfo.IME_ACTION_DONE) {
-            this.mKeyboardListener.onKeyboardActionDone(getText().toString());
+            mKeyboardListener.onKeyboardActionDone(getText().toString());
         }
-        //super.onEditorAction(actionCode);
+        if (options.mCloseKeyboardAfterChipAdded) {
+            super.onEditorAction(actionCode);
+        }
     }
 
     @Override
@@ -66,11 +72,15 @@ class ChipsEditText extends AppCompatEditText implements ChipComponent {
 
     @Override
     public void setChipOptions(ChipOptions options) {
+        this.options = options;
         if (options.mTextColorHint != null) {
             setHintTextColor(options.mTextColorHint);
         }
         if (options.mTextColor != null) {
             setTextColor(options.mTextColor);
+        }
+        if (options.mAddChipWithSpaceButton) {
+            addTextChangedListener(new ChipInputTextChangedHandler());
         }
         setHint(options.mHint);
         setTypeface(options.mTypeface);
@@ -133,5 +143,25 @@ class ChipsEditText extends AppCompatEditText implements ChipComponent {
             }
             return super.deleteSurroundingText(beforeLength, afterLength);
         }
+    }
+
+    /**
+     * Detects if space key was pressed
+     */
+    private final class ChipInputTextChangedHandler implements TextWatcher {
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (count > 0) {
+                if (s.toString().endsWith(" ")) {
+                    mKeyboardListener.onKeyboardActionDone(getText().toString().trim());
+                }
+            }
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void afterTextChanged(Editable s) {}
     }
 }

@@ -9,6 +9,7 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -16,17 +17,20 @@
             android:theme="@style/MaterialActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
     </android.support.design.widget.AppBarLayout>
+
     <com.tylersuehr.chips.ChipsInputLayout
         android:id="@+id/chips_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Start typing for chips..."
+        app:chip_showDelete="false"
+        android:hint=" "
+        app:chip_showDetails="false"
+        app:chip_showAvatar="false"
+        app:chip_textColor="#ffffff"
+        app:addChipWithSpaceButton="true"
+        app:closeKeyboardAfterChipAdded="false"
+        app:maxRows="30"
         android:textColorHint="#757575"
         android:textColor="#212121"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="16dp"
-        android:text="Above is the ChipsInputLayout! Type some stuff to filter contacts!"/>
+
 </LinearLayout>

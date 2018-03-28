@@ -25,11 +25,11 @@ public class MainActivity extends ContactLoadingActivity
         setContentView(R.layout.activity_main);
 
         // Setup toolbar
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // Setup chips input
-        mChipsInput = (ChipsInputLayout)findViewById(R.id.chips_input);
+        mChipsInput = findViewById(R.id.chips_input);
         mChipsInput.setImageRenderer(new GlideRenderer());
 
         // Load the current user's contact information
