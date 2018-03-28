@@ -56,7 +56,7 @@ class ChipsEditText extends AppCompatEditText implements ChipComponent {
         if (mKeyboardListener != null && actionCode == EditorInfo.IME_ACTION_DONE) {
             this.mKeyboardListener.onKeyboardActionDone(getText().toString());
         }
-        super.onEditorAction(actionCode);
+        //super.onEditorAction(actionCode);
     }
 
     @Override
