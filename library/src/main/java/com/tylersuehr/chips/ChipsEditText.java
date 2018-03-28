@@ -35,8 +35,8 @@ class ChipsEditText extends AppCompatEditText implements ChipComponent {
         super(c);
         setBackgroundResource(android.R.color.transparent);
         setLayoutParams(new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
         ));
 
         int padding = Utils.dp(8);
@@ -44,12 +44,12 @@ class ChipsEditText extends AppCompatEditText implements ChipComponent {
 
         // Prevent fullscreen on landscape
         setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI
-                |EditorInfo.IME_ACTION_DONE);
+            | EditorInfo.IME_ACTION_DONE);
         setPrivateImeOptions("nm");
 
         // No suggestions
         setInputType(InputType.TYPE_TEXT_VARIATION_FILTER
-                |InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+            | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
     }
 
     /**
@@ -105,7 +105,9 @@ class ChipsEditText extends AppCompatEditText implements ChipComponent {
      * Callbacks for simplified keyboard action events.
      */
     interface OnKeyboardListener {
+
         void onKeyboardBackspace();
+
         void onKeyboardActionDone(String text);
     }
 
@@ -120,6 +122,7 @@ class ChipsEditText extends AppCompatEditText implements ChipComponent {
      * by manually calling {@link #sendKeyEvent(KeyEvent)}.
      */
     private final class ChipsInputConnection extends InputConnectionWrapper {
+
         private ChipsInputConnection(InputConnection target) {
             super(target, true);
         }
@@ -128,7 +131,7 @@ class ChipsEditText extends AppCompatEditText implements ChipComponent {
         public boolean sendKeyEvent(KeyEvent event) {
             if (mKeyboardListener != null) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN
-                        && event.getKeyCode() == KeyEvent.KEYCODE_DEL) { // Backspace key
+                    && event.getKeyCode() == KeyEvent.KEYCODE_DEL) { // Backspace key
                     mKeyboardListener.onKeyboardBackspace();
                 }
             }
@@ -139,7 +142,7 @@ class ChipsEditText extends AppCompatEditText implements ChipComponent {
         public boolean deleteSurroundingText(int beforeLength, int afterLength) {
             if (beforeLength == 1 && afterLength == 0) { // Backspace key
                 return sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL))
-                        && sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
+                    && sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
             }
             return super.deleteSurroundingText(beforeLength, afterLength);
         }
@@ -149,19 +152,29 @@ class ChipsEditText extends AppCompatEditText implements ChipComponent {
      * Detects if space key was pressed
      */
     private final class ChipInputTextChangedHandler implements TextWatcher {
+
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (count > 0) {
-                if (s.toString().endsWith(" ")) {
+                if (isEndWithSpace(s)) {
                     mKeyboardListener.onKeyboardActionDone(getText().toString().trim());
                 }
             }
         }
 
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
 
         @Override
-        public void afterTextChanged(Editable s) {}
+        public void afterTextChanged(Editable s) {
+            if (isEndWithSpace(s) && s.length() == 1) {
+                setText(null);
+            }
+        }
+
+        private boolean isEndWithSpace(CharSequence s) {
+            return s.toString().endsWith(" ");
+        }
     }
 }

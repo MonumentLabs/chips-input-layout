@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:chip_showDelete="false"
-        android:hint=" "
+        android:hint="       "
         app:chip_showDetails="false"
         app:chip_showAvatar="false"
         app:chip_textColor="#ffffff"
