@@ -228,7 +228,15 @@ class ChipsAdapter
             if (mOptions.mShowDetails) {
                 this.chipView.setOnChipClicked(this);
             } else {
-                this.chipView.setOnChipClicked(null);
+                this.chipView.setOnChipClicked(new ChipView.OnChipClickListener() {
+                    @Override
+                    public void onChipClicked(ChipView v) {
+                        final int position = getAdapterPosition();
+                        if (position > -1){
+                            mDataSource.replaceChip(position);
+                        }
+                    }
+                });
             }
         }
 
