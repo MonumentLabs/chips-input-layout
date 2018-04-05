@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class MainActivity extends ContactLoadingActivity
         implements ContactOnChipAdapter.OnContactClickListener {
-    private ChipsInputLayout mChipsInput;
 
+    private ChipsInputLayout mChipsInput;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +36,8 @@ public class MainActivity extends ContactLoadingActivity
         c0.setName("tag_0");
 
         mChipsInput.getChipDataSource().addSelectedChip(c0);
+
+        loadContactsWithRuntimePermission();
     }
 
     /**
