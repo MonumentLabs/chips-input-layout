@@ -3,10 +3,10 @@ package com.tylersuehr.chipexample;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
-
 import com.tylersuehr.chips.Chip;
+import com.tylersuehr.chips.ChipDataSource;
 import com.tylersuehr.chips.ChipsInputLayout;
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +16,7 @@ import java.util.List;
  * @version 1.0
  */
 public class MainActivity extends ContactLoadingActivity
-        implements ContactOnChipAdapter.OnContactClickListener {
+    implements ContactOnChipAdapter.OnContactClickListener {
 
     private ChipsInputLayout mChipsInput;
 
@@ -32,10 +32,10 @@ public class MainActivity extends ContactLoadingActivity
         // Setup chips input
         mChipsInput = findViewById(R.id.chips_input);
 
+        List<Chip> chipsToAdd = new ArrayList<>();
         ContactChip c0 = new ContactChip();
-        c0.setName("tag_0");
-
-        mChipsInput.getChipDataSource().addSelectedChip(c0);
+        c0.setName("one");
+        chipsToAdd.add(c0);
 
         mChipsInput.addFilteredChip(new TextChip("one"));
         mChipsInput.addFilteredChip(new TextChip("two"));
@@ -47,6 +47,23 @@ public class MainActivity extends ContactLoadingActivity
         mChipsInput.addFilteredChip(new TextChip("six"));
         mChipsInput.addFilteredChip(new TextChip("seven"));
         mChipsInput.addFilteredChip(new TextChip("once"));
+
+        final ChipDataSource chipDataSource = mChipsInput.getChipDataSource();
+        List<Chip> filteredChips = chipDataSource.getFilteredChips();
+        for (int i = chipsToAdd.size() - 1; i >= 0; i--) {
+            Chip chip = chipsToAdd.get(i);
+            boolean isTaken = false;
+            for (Chip filteredChip : filteredChips) {
+                if (filteredChip.getTitle().equals(chip.getTitle())) {
+                    chipDataSource.takeChip(filteredChip);
+                    isTaken = true;
+                    break;
+                }
+            }
+            if (!isTaken) {
+                chipDataSource.addSelectedChip(chip);
+            }
+        }
 
 //        loadContactsWithRuntimePermission();
     }
@@ -61,8 +78,10 @@ public class MainActivity extends ContactLoadingActivity
     }
 
     @Override
-    protected void onContactsReset() {}
+    protected void onContactsReset() {
+    }
 
     @Override
-    public void onContactClicked(ContactChip chip) {}
+    public void onContactClicked(ContactChip chip) {
+    }
 }
