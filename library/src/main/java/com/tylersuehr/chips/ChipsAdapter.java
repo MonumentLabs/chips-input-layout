@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
+import java.util.List;
 
 /**
  * Copyright © 2017 Tyler Suehr
@@ -91,8 +92,22 @@ class ChipsAdapter
         // Clear the input before taking chip so we don't need to update UI twice
         mEditText.setText("");
 
-        // This will trigger callback, which calls notifyDataSetChanged()
-        mDataSource.addSelectedChip(new DefaultCustomChip(text));
+        List<Chip> filteredChips = mDataSource.getFilteredChips();
+        int indexOf = -1;
+        for (int i = 0; i < filteredChips.size(); i++) {
+            Chip filteredChip = filteredChips.get(i);
+            if (filteredChip.getTitle().equals(text)) {
+                indexOf = i;
+                break;
+            }
+        }
+        if (indexOf != -1) {
+            mDataSource.takeChip(filteredChips.get(indexOf));
+        } else {
+            // This will trigger callback, which calls notifyDataSetChanged()
+            DefaultCustomChip chip = new DefaultCustomChip(text);
+            mDataSource.addSelectedChip(chip);
+        }
 
         // Hide the filterable recycler
         if (mFilteredRecycler != null) {
