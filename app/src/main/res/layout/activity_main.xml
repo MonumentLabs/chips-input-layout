@@ -29,6 +29,7 @@
         app:chip_textColor="#ffffff"
         app:addChipWithSpaceButton="true"
         app:closeKeyboardAfterChipAdded="false"
+        app:hideKeyboardOnChipClick="false"
         app:maxRows="30"
         android:textColorHint="#757575"
         android:textColor="#212121"/>

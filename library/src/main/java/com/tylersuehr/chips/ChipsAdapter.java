@@ -31,11 +31,9 @@ class ChipsAdapter
     private final ChipDataSource mDataSource;
     private final ChipOptions mOptions;
     private final ChipsEditText mEditText;
+    private FilterableRecyclerView mFilteredRecycler;
 
-
-    ChipsAdapter(ChipDataSource dataSource,
-                 ChipsEditText editText,
-                 ChipOptions options) {
+    ChipsAdapter(ChipDataSource dataSource, ChipsEditText editText, ChipOptions options) {
         mDataSource = dataSource;
         mEditText = editText;
         mOptions = options;
@@ -95,6 +93,11 @@ class ChipsAdapter
 
         // This will trigger callback, which calls notifyDataSetChanged()
         mDataSource.addSelectedChip(new DefaultCustomChip(text));
+
+        // Hide the filterable recycler
+        if (mFilteredRecycler != null) {
+            mFilteredRecycler.fadeOut();
+        }
     }
 
     /**
@@ -114,6 +117,10 @@ class ChipsAdapter
     @Override
     public void onChipDataSourceChanged() {
         notifyDataSetChanged();
+    }
+
+    public void setFilteredRecycler(FilterableRecyclerView filteredRecycler) {
+        mFilteredRecycler = filteredRecycler;
     }
 
     private void autoFitEditText() {

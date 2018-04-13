@@ -66,8 +66,7 @@ public class ChipsInputLayout extends MaxHeightScrollView
         inflate(c, R.layout.chips_input_view, this);
 
         // Setup the chips recycler view
-        mChipsAdapter = new ChipsAdapter(
-                mDataSource, loadChipsInput(), mOptions);
+        mChipsAdapter = new ChipsAdapter(mDataSource, loadChipsInput(), mOptions);
         mChipsRecycler = findViewById(R.id.chips_recycler);
         mChipsRecycler.addItemDecoration(new DefaultChipDecor(c));
         mChipsRecycler.setLayoutManager(ChipsLayoutManager.newBuilder(c).build());
@@ -596,6 +595,8 @@ public class ChipsInputLayout extends MaxHeightScrollView
                 lp.bottomMargin = Utils.getNavBarHeight(getContext());
             }
             rootView.addView(mFilteredRecycler, lp);
+
+            mChipsAdapter.setFilteredRecycler(mFilteredRecycler);
         }
     }
 

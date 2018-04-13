@@ -30,6 +30,7 @@ class FilterableRecyclerView extends RecyclerView implements ChipComponent {
     private ChipsInputLayout mChipsInput;
     /* Used to trigger filtering and receive callbacks to show or hide this */
     private Filter mFilter;
+    private ChipOptions options;
 
 
     FilterableRecyclerView(Context c) {
@@ -41,6 +42,7 @@ class FilterableRecyclerView extends RecyclerView implements ChipComponent {
 
     @Override
     public void setChipOptions(ChipOptions options) {
+        this.options = options;
         ViewCompat.setElevation(this, options.mFilterableListElevation);
         if (options.mFilterableListBackgroundColor != null) {
             getBackground().setColorFilter(options.mFilterableListBackgroundColor
@@ -63,6 +65,10 @@ class FilterableRecyclerView extends RecyclerView implements ChipComponent {
      */
     void filterChips(CharSequence filter) {
         if (filter != null) {
+            if (options.mAddChipWithSpaceButton && filter.toString().endsWith(" ")) {
+                fadeOut();
+                return;
+            }
             mFilter.filter(filter, new Filter.FilterListener() {
                 @Override
                 public void onFilterComplete(int count) {

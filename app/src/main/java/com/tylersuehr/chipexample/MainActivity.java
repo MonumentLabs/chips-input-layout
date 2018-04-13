@@ -37,7 +37,18 @@ public class MainActivity extends ContactLoadingActivity
 
         mChipsInput.getChipDataSource().addSelectedChip(c0);
 
-        loadContactsWithRuntimePermission();
+        mChipsInput.addFilteredChip(new TextChip("one"));
+        mChipsInput.addFilteredChip(new TextChip("two"));
+        mChipsInput.addFilteredChip(new TextChip("twin"));
+        mChipsInput.addFilteredChip(new TextChip("three"));
+        mChipsInput.addFilteredChip(new TextChip("four"));
+        mChipsInput.addFilteredChip(new TextChip("five"));
+        mChipsInput.addFilteredChip(new TextChip("fire"));
+        mChipsInput.addFilteredChip(new TextChip("six"));
+        mChipsInput.addFilteredChip(new TextChip("seven"));
+        mChipsInput.addFilteredChip(new TextChip("once"));
+
+//        loadContactsWithRuntimePermission();
     }
 
     /**
@@ -46,7 +57,7 @@ public class MainActivity extends ContactLoadingActivity
     @Override
     protected void onContactsAvailable(List<ContactChip> chips) {
         System.out.println("Number of contacts: " + chips.size());
-        mChipsInput.setFilterableChipList(chips);
+//        mChipsInput.setFilterableChipList(chips);
     }
 
     @Override

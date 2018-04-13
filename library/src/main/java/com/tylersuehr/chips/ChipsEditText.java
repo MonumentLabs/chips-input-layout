@@ -157,7 +157,9 @@ class ChipsEditText extends AppCompatEditText implements ChipComponent {
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (count > 0) {
                 if (isEndWithSpace(s)) {
-                    mKeyboardListener.onKeyboardActionDone(getText().toString().trim());
+                    if (mKeyboardListener != null) {
+                        mKeyboardListener.onKeyboardActionDone(getText().toString().trim());
+                    }
                 }
             }
         }
