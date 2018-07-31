@@ -291,6 +291,15 @@ public class ChipsInputLayout extends MaxHeightScrollView
     }
 
     /**
+     * Gets the current ChipsEditText that user is typing on.
+     *
+     * @return {@link ChipsEditText}
+     */
+    public ChipsEditText getChipsEditText() {
+        return mChipsInput;
+    }
+
+    /**
      * Gets a filtered chip with exactly the given title or like the given title.
      *
      * @param title Title to search for
