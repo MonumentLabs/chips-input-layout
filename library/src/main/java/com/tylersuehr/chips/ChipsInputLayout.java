@@ -382,6 +382,15 @@ public class ChipsInputLayout extends MaxHeightScrollView
     }
 
     /**
+     * Gets the current ChipsEditText that user is typing on.
+     *
+     * @return {@link ChipsEditText}
+     */
+    public ChipsEditText getChipsEditText() {
+        return mChipsInput;
+    }
+
+    /**
      * Sets the chip mValidator to valid chips.
      *
      * @param validator {@link ChipValidator}
