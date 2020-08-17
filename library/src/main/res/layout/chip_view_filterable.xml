@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="?attr/selectableItemBackground"
@@ -8,6 +7,7 @@
     android:layout_height="wrap_content"
     android:padding="16dp"
     android:clickable="true">
+
     <com.tylersuehr.chips.CircleImageView
         android:id="@+id/image"
         android:layout_width="40dp"
@@ -42,5 +42,5 @@
         app:layout_constraintLeft_toRightOf="@+id/image"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="Subtitle"/>
-</android.support.constraint.ConstraintLayout>
+        tools:text="Subtitle" />
+</androidx.constraintlayout.widget.ConstraintLayout>

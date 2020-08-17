@@ -1,16 +1,18 @@
 package com.tylersuehr.chips;
+
 import android.content.Context;
 import android.graphics.PorterDuff;
-import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 /**
  * Copyright © 2017 Tyler Suehr
- *
+ * <p>
  * This view displays the normal chip (specified in Material Design Guide).
  *
  * @author Tyler Suehr

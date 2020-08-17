@@ -1,15 +1,17 @@
 package com.tylersuehr.chips;
+
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
+
+import androidx.annotation.NonNull;
 
 /**
  * Copyright © 2017 Tyler Suehr
- *
+ * <p>
  * Contains all the mutable properties for this library.
  *
  * @author Tyler Suehr

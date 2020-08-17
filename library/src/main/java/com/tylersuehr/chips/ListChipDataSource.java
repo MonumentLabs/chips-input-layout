@@ -1,5 +1,7 @@
 package com.tylersuehr.chips;
-import android.support.annotation.VisibleForTesting;
+
+import androidx.annotation.VisibleForTesting;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

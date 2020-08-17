@@ -2,12 +2,13 @@ package com.tylersuehr.chips;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Copyright © 2017 Tyler Suehr
- *
+ * <p>
  * Subclass of {@link RecyclerView.ItemDecoration} used to add margin
  * to chips on their left and bottom sides.
  *

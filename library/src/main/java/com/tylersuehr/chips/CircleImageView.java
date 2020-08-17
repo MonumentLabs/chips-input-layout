@@ -1,4 +1,5 @@
 package com.tylersuehr.chips;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -14,15 +15,16 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
+import androidx.appcompat.widget.AppCompatImageView;
 
 /**
  * Copyright © 2017 Tyler Suehr
- *
+ * <p>
  * Subclass of {@link AppCompatImageView} that will crop the given image into
  * a circular Bitmap image.
  *

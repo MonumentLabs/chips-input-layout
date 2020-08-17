@@ -1,10 +1,13 @@
 package com.tylersuehr.chips;
-import android.support.v7.widget.RecyclerView;
+
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
+
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 /**

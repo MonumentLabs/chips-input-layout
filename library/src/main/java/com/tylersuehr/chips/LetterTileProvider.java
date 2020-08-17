@@ -1,4 +1,5 @@
 package com.tylersuehr.chips;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -11,8 +12,9 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.text.TextPaint;
+
+import androidx.core.content.ContextCompat;
 
 /**
  * Copyright © Tyler Suehr
@@ -150,12 +152,12 @@ public class LetterTileProvider {
     /**
      * Randomly picks one of the colors in {@link #colors} using an algorithm based
      * on the hashed value of the given key.
-     *
+     * <p>
      * This is consistent because String.hashCode() is guaranteed to not change across
      * Java versions, which implicates that the same key always maps to the same color.
      *
      * @param key Any string value
-     * @return {@link android.support.annotation.ColorInt}
+     * @return {@link androidx.annotation.ColorInt}
      */
     private int pickColor(String key) {
         final int whichColor = Math.abs(key.hashCode()) % colors.length;
